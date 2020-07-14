@@ -65,13 +65,7 @@ class App extends Component {
     // 인덱스와 맞는 원본배열에 조건에 부합한 person 객체 덮어치기
     persons[personIndex] = person;
 
-    this.setState({
-      persons: [
-        { name: 'Max', age: 28 },
-        { name: event.target.value, age: 29 },
-        { name: 'Stephanie', age: 26 }
-      ]
-    });
+    this.setState({ persons: persons });
   };
 
   render() {
