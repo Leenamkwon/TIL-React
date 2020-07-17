@@ -1,10 +1,10 @@
 import React from 'react';
-// import Counter from './Counter';
+import Counter from './Counter';
 // import Info from './info';
-import Average from './average';
+// import Average from './average';
 
 function App() {
-  return <Average></Average>;
+  return <Counter></Counter>;
 }
 
 export default App;
