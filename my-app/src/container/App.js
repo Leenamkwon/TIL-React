@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
-import Person from './person/Person';
+import Module from './App.module.css';
+import Person from '../components/persons/person/Person';
 
 class App extends Component {
   state = {
@@ -98,18 +98,20 @@ class App extends Component {
 
     let classes = [];
     if (this.state.persons.length <= 2) {
-      classes.push('red');
+      classes.push(Module.red);
     }
 
     if (this.state.persons.length <= 1) {
-      classes.push('bold');
+      classes.push();
     }
 
     return (
-      <div className="App">
-        <h1>Hi, I'm a React App</h1>
+      <div className={Module.App}>
         <p className={classes.join(' ')}>This is really working!</p>
-        <button className="button" onClick={() => this.togglePersonsHandler()}>
+        <button
+          className={Module.button}
+          onClick={() => this.togglePersonsHandler()}
+        >
           Toggle persons
         </button>
         {persons}
