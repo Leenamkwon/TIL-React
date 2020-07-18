@@ -456,16 +456,13 @@ module.exports = function (webpackEnv) {
               test: sassRegex,
               exclude: sassModuleRegex,
               use: getStyleLoaders({
-                importLoaders: 3,
+                importLoaders: 2,
                 sourceMap: isEnvProduction && shouldUseSourceMap
               }).concat({
                 loader: require.resolve('sass-loader'),
                 options: {
-                  sassOptions: {
-                    includePaths: [paths.appSrc + '/styles']
-                  },
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                  prependData: `@import 'sassComponent';`
+                  includePaths: [paths.appSrc + '/styles'],
+                  sourceMap: isEnvProduction && shouldUseSourceMap
                 }
               }),
               // Don't consider CSS imports dead code even if the
@@ -478,16 +475,21 @@ module.exports = function (webpackEnv) {
             // using the extension .module.scss or .module.sass
             {
               test: sassModuleRegex,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 3,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                  modules: {
-                    getLocalIdent: getCSSModuleLocalIdent
-                  }
-                },
-                'sass-loader'
-              )
+              use: getStyleLoaders({
+                importLoaders: 2,
+                sourceMap: isEnvProduction && shouldUseSourceMap
+              }).concat({
+                loader: require.resolve('sass-loader'),
+                options: {
+                  includePaths: [paths.appSrc + '/styles'],
+                  sourceMap: isEnvProduction && shouldUseSourceMap
+                }
+              }),
+              // Don't consider CSS imports dead code even if the
+              // containing package claims to have no side effects.
+              // Remove this when webpack adds a warning or an error for this.
+              // See https://github.com/webpack/webpack/issues/6571
+              sideEffects: true
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
