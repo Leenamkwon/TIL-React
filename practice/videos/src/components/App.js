@@ -2,11 +2,16 @@ import React from 'react';
 import SearchBar from './searchBar';
 import Youtube from './api/Youtube';
 import VideoList from './VideoList';
+import VideoDetail from './VideoDetail';
 
 const KEY = 'AIzaSyD2cfClP8fqYDhK-J1b7ZtCO13c8sDR1RA';
 
 class App extends React.Component {
-	state = { videos: [] };
+	state = { videos: [], selectedVideo: null };
+
+	componentDidMount() {
+		this.onTermSubmit('빠니보틀');
+	}
 
 	onTermSubmit = async (term) => {
 		const response = await Youtube.get('/search', {
@@ -19,14 +24,33 @@ class App extends React.Component {
 			},
 		});
 
-		this.setState({ videos: response.data.items });
+		this.setState({
+			videos: response.data.items,
+			selectedVideo: response.data.items[0],
+		});
+	};
+
+	onVideoSelect = (video) => {
+		this.setState({ selectedVideo: video });
 	};
 
 	render() {
 		return (
 			<div className='ui container'>
 				<SearchBar onFormSubmit={this.onTermSubmit}></SearchBar>
-				<VideoList videos={this.state.videos}></VideoList>
+				<div className='ui grid'>
+					<div className='ui row'>
+						<div className='eleven wide column'>
+							<VideoDetail video={this.state.selectedVideo} />
+						</div>
+						<div className='five wide column'>
+							<VideoList
+								videos={this.state.videos}
+								onVideoSelect={this.onVideoSelect}
+							></VideoList>
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}
