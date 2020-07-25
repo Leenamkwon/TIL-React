@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Accordion from './components/Accordion';
 import Search from './components/Search';
+import Dropdown from './components/SelectColor';
 
 const items = [
 	{
@@ -17,47 +18,31 @@ const items = [
 	},
 ];
 
-const list2 = [
+const options = [
 	{
-		title: 'accordion',
+		label: 'The color red',
+		value: 'red',
 	},
 	{
-		title: 'sex',
+		label: 'The color Green',
+		value: 'green',
 	},
 	{
-		title: 'bombar',
+		label: 'The color Blue',
+		value: 'blue',
 	},
 ];
 
 export default () => {
-	const [widget, setWidget] = useState(null);
-	const [dom, setdom] = useState(null);
-
-	const render = (title) => {
-		setWidget(title);
-
-		if (widget === title) {
-			return setdom(<Accordion items={items} />);
-		} else {
-			setdom(null);
-		}
-	};
-
-	const list = list2.map((item, index) => (
-		<span
-			onClick={() => render(item.title)}
-			key={item.title}
-			style={{cursor: 'pointer', margin: '15px', padding: '100px'}}
-		>
-			{item.title}
-		</span>
-	));
+	const [selected, setSelected] = useState(options[0]);
 
 	return (
 		<div>
-			{list}
-			{dom}
-			<Search></Search>
+			<Dropdown
+				selected={selected}
+				options={options}
+				onSelectedChange={setSelected}
+			></Dropdown>
 		</div>
 	);
 };
