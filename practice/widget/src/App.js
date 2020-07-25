@@ -35,14 +35,27 @@ const options = [
 
 export default () => {
 	const [selected, setSelected] = useState(options[0]);
+	const [showDropdown, setShowDropdown] = useState(true);
+	const [color, setColor] = useState(options[0].value);
+
+	const changeColor = (color) => {
+		setColor(color);
+	};
 
 	return (
 		<div>
-			<Dropdown
-				selected={selected}
-				options={options}
-				onSelectedChange={setSelected}
-			></Dropdown>
+			<button onClick={() => setShowDropdown(!showDropdown)}>
+				Toggle Dropdown
+			</button>
+			{showDropdown ? (
+				<Dropdown
+					changeColor={changeColor}
+					selected={selected}
+					options={options}
+					onSelectedChange={setSelected}
+				></Dropdown>
+			) : null}
+			<p style={{ color: color }}>This test is {color}</p>
 		</div>
 	);
 };
