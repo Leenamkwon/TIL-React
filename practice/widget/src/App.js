@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Accordion from './components/Accordion';
 import Search from './components/Search';
 import Dropdown from './components/SelectColor';
+import Translate from './components/translate';
 
 const items = [
 	{
@@ -36,11 +37,6 @@ const options = [
 export default () => {
 	const [selected, setSelected] = useState(options[0]);
 	const [showDropdown, setShowDropdown] = useState(true);
-	const [color, setColor] = useState(options[0].value);
-
-	const changeColor = (color) => {
-		setColor(color);
-	};
 
 	return (
 		<div>
@@ -49,13 +45,14 @@ export default () => {
 			</button>
 			{showDropdown ? (
 				<Dropdown
-					changeColor={changeColor}
+					title={'color'}
 					selected={selected}
 					options={options}
 					onSelectedChange={setSelected}
 				></Dropdown>
 			) : null}
-			<p style={{ color: color }}>This test is {color}</p>
+
+			<Translate title={'language'}></Translate>
 		</div>
 	);
 };
