@@ -24,6 +24,6 @@ yarn-error.log*
 *.log
 .idea/
 
-hook-tutorial
-my-app
-styleing-react
+hook-tutorial/
+my-app/
+styleing-react/
