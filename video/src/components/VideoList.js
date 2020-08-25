@@ -12,18 +12,7 @@ const VideoList = ({ videos, onVideoSelect }) => {
     );
   });
 
-  const getVideoID = (e) => {
-    const id = e.target.closest('.video-item').dataset.id;
-    if (e.target.matches('.video-item, .video-item *')) {
-      console.log(id);
-    }
-  };
-
-  return (
-    <div className='ui relaxed divided list' onClick={getVideoID}>
-      {renderedList}
-    </div>
-  );
+  return <div className='ui relaxed divided list'>{renderedList}</div>;
 };
 
 export default VideoList;
