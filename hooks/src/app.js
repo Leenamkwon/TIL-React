@@ -37,14 +37,19 @@ const options = [
   },
 ];
 
+const showAccordion = () => {
+  if (window.location.pathname === '/') {
+    return <Accordion items={items} />;
+  }
+};
+
 export default () => {
   const [selected, setSelected] = useState(options[0]);
 
   return (
     <div>
       <br />
-
-      <Translate />
+      {showAccordion()}
     </div>
   );
 };
