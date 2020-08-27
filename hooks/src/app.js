@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Accordion from './components/accordion';
 import Search from './components/Search';
 import Dropdown from './components/dropdown';
+import Translate from './components/translate';
 
 const items = [
   {
@@ -39,17 +40,11 @@ const options = [
 export default () => {
   const [selected, setSelected] = useState(options[0]);
 
-  useEffect(() => {
-    console.log('rerender');
-  }, [selected]);
   return (
     <div>
       <br />
-      <Dropdown
-        options={options}
-        selected={selected}
-        onSelectedChange={setSelected}
-      />
+
+      <Translate />
     </div>
   );
 };

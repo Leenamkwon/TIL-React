@@ -1,28 +1,36 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const Dropdown = ({ options, selected, onSelectedChange }) => {
+const Dropdown = ({ label, options, selected, onSelectedChange }) => {
   const [open, setOpen] = useState(false);
   const dropFormEl = useRef(null);
 
   useEffect(() => {
-    document.body.addEventListener('click', (e) => {
+    const onBodyClick = (e) => {
       if (!dropFormEl.current.contains(e.target)) {
         setOpen(false);
       }
-    });
-  });
+      return;
+    };
+    document.body.addEventListener('click', onBodyClick);
+
+    return () => {
+      document.body.removeEventListener('click', onBodyClick);
+    };
+  }, []);
 
   let RenderedOptions = options.map((option) => {
-    if (option.color === selected.color) {
+    if (option.value === selected.value) {
       // React에서는 null을 반환하면 아무것도 렌더링 하지 않음.
       return null;
     }
 
     return (
       <div
-        key={options.color}
+        key={options.value}
         className='item'
-        onClick={() => onSelectedChange(option)}
+        onClick={(e) => {
+          onSelectedChange(option);
+        }}
       >
         {option.label}
       </div>
@@ -30,11 +38,10 @@ const Dropdown = ({ options, selected, onSelectedChange }) => {
   });
 
   return (
-    <div className='ui form'>
+    <div className='ui form' ref={dropFormEl}>
       <div className='field'>
-        <label className='label'>Select a Color</label>
+        <label className='label'>{label}</label>
         <div
-          ref={dropFormEl}
           onClick={() => setOpen(!open)}
           className={`ui selection dropdown ${open ? 'visible active' : ''}`}
         >
