@@ -61,7 +61,7 @@ const Search = () => {
     if (results.length) {
       return renderedResults;
     } else {
-      return '';
+      return;
     }
   };
 
