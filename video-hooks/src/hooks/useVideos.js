@@ -21,7 +21,6 @@ const useVideos = (defaultSearchTerm) => {
           type: 'video',
         },
       });
-
       setVideos(res.data.items);
     } catch (err) {
       console.log('할당량이 초과되었습니다.');
