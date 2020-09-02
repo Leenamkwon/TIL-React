@@ -9,7 +9,8 @@ class PostList extends React.Component {
   }
 
   render() {
-    return <div>Post List</div>;
+    console.log(this.props.posts.data);
+    return <div>Post Listdiv</div>;
   }
 }
 
