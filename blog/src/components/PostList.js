@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPost } from '../action/';
+import { fetchPost, fetchPostsAndUsers } from '../action/';
 import UserHeader from './UserHeader';
 
 class PostList extends React.Component {
@@ -35,4 +35,6 @@ const mapStateToProps = (state) => {
   return { posts: state.posts };
 };
 
-export default connect(mapStateToProps, { fetchPosts: fetchPost })(PostList);
+export default connect(mapStateToProps, { fetchPosts: fetchPostsAndUsers })(
+  PostList
+);
