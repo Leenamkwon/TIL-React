@@ -6,7 +6,7 @@ import UserHeader from './UserHeader';
 class PostList extends React.Component {
   componentDidMount() {
     // action creator -> action creator runs code to make an API request
-    this.props.fetchPosts();
+    this.props.fetchPostsAndUsers();
   }
 
   renderList() {
@@ -35,6 +35,6 @@ const mapStateToProps = (state) => {
   return { posts: state.posts };
 };
 
-export default connect(mapStateToProps, { fetchPosts: fetchPostsAndUsers })(
-  PostList
-);
+export default connect(mapStateToProps, {
+  fetchPostsAndUsers: fetchPostsAndUsers,
+})(PostList);
