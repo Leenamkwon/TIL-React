@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import Categories from '../Categories';
 import NewsList from '../NewsList';
 
 const NewsPage = ({ match }) => {
@@ -7,7 +6,6 @@ const NewsPage = ({ match }) => {
 
   return (
     <Fragment>
-      <Categories />
       <NewsList category={category} />
     </Fragment>
   );
