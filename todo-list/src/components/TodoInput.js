@@ -1,6 +1,8 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 
 const TodoInput = ({ item, handleChange, handleSubmit, editItem }) => {
+  const handleChange2 = useCallback((e) => handleChange(e.target.value), []);
+
   return (
     <div className='card card-body my-3'>
       <form
@@ -18,7 +20,7 @@ const TodoInput = ({ item, handleChange, handleSubmit, editItem }) => {
               className='form-control text-capitalize'
               placeholder='add todo item..'
               value={item}
-              onChange={(e) => handleChange(e.target.value)}
+              onChange={(e) => handleChange2(e)}
             />
           </div>
           <button

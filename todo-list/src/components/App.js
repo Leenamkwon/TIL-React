@@ -18,6 +18,7 @@ const App = () => {
   const handleChange = (term) => setItem(term);
 
   const handleSubmit = (e) => {
+    console.log('hi');
     e.preventDefault();
     const newItem = { id: id, title: item };
     setItems([...items, newItem]);
