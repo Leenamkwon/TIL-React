@@ -1,7 +1,9 @@
 import React, { memo, useCallback } from 'react';
 
 const TodoInput = ({ item, handleChange, handleSubmit, editItem }) => {
-  const handleChange2 = useCallback((e) => handleChange(e.target.value), []);
+  const handleChange2 = useCallback((e) => handleChange(e.target.value), [
+    handleChange,
+  ]);
 
   return (
     <div className='card card-body my-3'>
