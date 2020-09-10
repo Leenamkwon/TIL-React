@@ -18,7 +18,6 @@ const App = () => {
   const handleChange = (term) => setItem(term);
 
   const handleSubmit = (e) => {
-    console.log('hi');
     e.preventDefault();
     const newItem = { id: id, title: item };
     setItems([...items, newItem]);
@@ -37,7 +36,6 @@ const App = () => {
     const selectedItem = items.find((item) => item.id === id);
     setItems(update);
     setItem(selectedItem.title);
-    setId(id);
     setEditItem(true);
   };
 
